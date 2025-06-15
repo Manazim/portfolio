@@ -1,19 +1,23 @@
-// Scene.tsx
-import { useFrame } from '@react-three/fiber'
 import { useRef } from 'react'
-import * as THREE from 'three'
+import { useFrame } from '@react-three/fiber'
+import { Mesh } from 'three'
 
-export function Scene() {
-  const meshRef = useRef<THREE.Mesh>(null!)
+export default function Scene() {
+  const cube = useRef<Mesh>(null!)
 
   useFrame(() => {
-    meshRef.current.rotation.y += 0.01
+    cube.current.rotation.y += 0.005
+    cube.current.rotation.x += 0.005
   })
 
   return (
-    <mesh ref={meshRef}>
-      <boxGeometry />
-      <meshStandardMaterial color="hotpink" />
-    </mesh>
+    <>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+      <mesh ref={cube} position={[0, 0, -5]}>
+        <boxGeometry args={[2, 2, 2]} />
+        <meshStandardMaterial color="skyblue" />
+      </mesh>
+    </>
   )
 }
