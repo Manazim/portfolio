@@ -1,3 +1,4 @@
+// src/App.tsx
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -9,18 +10,20 @@ import Skills from './pages/Skills'
 import Experience from './pages/Experience'
 import Gallery from './pages/Gallery'
 import Contact from './pages/Contact'
+import './styles/global.css'
 
 export default function App() {
   return (
     <Router>
-      <div className="w-screen h-screen overflow-hidden relative">
-        <Canvas className="absolute top-0 left-0 z-0">
+      <div className="app-container">
+        <Canvas className="canvas-background">
           <Suspense fallback={null}>
             <Scene />
           </Suspense>
         </Canvas>
 
-        <div className="relative z-10">
+        {/* HTML UI should go here */}
+        <div className="ui-content">
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
