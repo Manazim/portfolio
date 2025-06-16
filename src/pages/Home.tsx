@@ -1,9 +1,12 @@
+// src/pages/Home.tsx
+import NeonButton from '../components/NeonButton'
 export default function Home() {
   return (
-    <section className="min-h-screen flex items-center justify-center text-white text-center">
-      <div>
-        <h1 className="text-4xl font-bold mb-4">About Me</h1>
-        <p className="text-lg max-w-xl mx-auto">[Insert your about info here]</p>
+    <section>
+      <div style={{ textAlign: 'center' }}>
+        <h1 className="neon" style={{ fontSize: '3rem' }}>Welcome</h1>
+        <p style={{ margin: '1rem 0' }}>[Your intro here]</p>
+        <NeonButton text="See My Work" onClick={() => window.location.href = '/achievements'} />
       </div>
     </section>
   )
