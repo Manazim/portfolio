@@ -1,9 +1,14 @@
+// src/pages/Experience.tsx
 export default function Experience() {
   return (
-    <section className="min-h-screen flex items-center justify-center text-white text-center">
-      <div>
-        <h1 className="text-4xl font-bold mb-4">About Me</h1>
-        <p className="text-lg max-w-xl mx-auto">[Insert your about info here]</p>
+    <section>
+      <div style={{ maxWidth: 600 }}>
+        <h1 className="neon">Experience</h1>
+        <ul>
+          {/* Replace with your experiences */}
+          <li>Job Title at Company — 2023–Present</li>
+          <li>Intern at Organization — 2022–2023</li>
+        </ul>
       </div>
     </section>
   )
