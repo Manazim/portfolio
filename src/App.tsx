@@ -3,37 +3,35 @@ import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Scene from './components/Scene'
+import LanyardScene from './components/LanyardScene'
 import Home from './pages/Home'
 import About from './pages/About'
 import Skills from './pages/Skills'
 import Experience from './pages/Experience'
-import Gallery from './pages/Gallery'
+import Achievements from './pages/Achievements'
 import Contact from './pages/Contact'
-import './styles/global.css'
 
 export default function App() {
   return (
     <Router>
-      <div className="app-container">
-        <Canvas className="canvas-background">
-          <Suspense fallback={null}>
-            <Scene />
-          </Suspense>
-        </Canvas>
+      {/* 3D Background */}
+      <Canvas className="canvas-bg">
+        <Suspense fallback={null}>
+          <LanyardScene />
+        </Suspense>
+      </Canvas>
 
-        {/* HTML UI should go here */}
-        <div className="ui-content">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </div>
+      {/* Foreground UI */}
+      <div className="ui-container">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/achievements" element={<Achievements />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </div>
     </Router>
   )
