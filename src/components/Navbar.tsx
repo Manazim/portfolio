@@ -7,7 +7,7 @@ export default function Navbar() {
       <Link to="/about">About</Link>
       <Link to="/skills">Skills</Link>
       <Link to="/experience">Experience</Link>
-      <Link to="/gallery">Gallery</Link>
+      <Link to="/achievement">Achievements</Link>
       <Link to="/contact">Contact</Link>
     </nav>
   )
