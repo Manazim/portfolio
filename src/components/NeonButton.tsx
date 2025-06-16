@@ -1,5 +1,5 @@
 // src/components/NeonButton.tsx
-import React from 'react'
+//import React from 'react'
 
 interface NeonButtonProps {
   text: string
