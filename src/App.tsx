@@ -1,4 +1,3 @@
-// src/App.tsx
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
