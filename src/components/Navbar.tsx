@@ -1,14 +1,28 @@
-import { Link } from 'react-router-dom'
+// src/components/Navbar.tsx
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Navbar() {
+  const loc = useLocation().pathname
+  const items = [
+    { to: '/', label: 'Home' },
+    { to: '/about', label: 'About' },
+    { to: '/skills', label: 'Skills' },
+    { to: '/experience', label: 'Experience' },
+    { to: '/achievements', label: 'Achievements' },
+    { to: '/contact', label: 'Contact' }
+  ]
+
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-20 bg-black/60 text-white px-6 py-2 rounded-full shadow-lg flex gap-4">
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      <Link to="/skills">Skills</Link>
-      <Link to="/experience">Experience</Link>
-      <Link to="/achievement">Achievements</Link>
-      <Link to="/contact">Contact</Link>
+    <nav>
+      {items.map(i => (
+        <Link
+          key={i.to}
+          to={i.to}
+          className={loc === i.to ? 'neon' : ''}
+        >
+          {i.label}
+        </Link>
+      ))}
     </nav>
   )
 }
