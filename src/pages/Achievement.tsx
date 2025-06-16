@@ -1,4 +1,4 @@
-export default function Gallery() {
+export default function Achievement() {
   return (
     <section className="min-h-screen flex items-center justify-center text-white text-center">
       <div>
