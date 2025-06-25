@@ -1,6 +1,4 @@
-// src/components/LanyardScene.tsx
-import { Suspense, useRef } from 'react'
-import { Canvas } from '@react-three/fiber'
+
 import { useGLTF, Float, OrbitControls } from '@react-three/drei'
 import gsap from 'gsap'
 import { useEffect } from 'react'
