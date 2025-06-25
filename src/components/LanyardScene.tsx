@@ -1,7 +1,7 @@
 
+import { useRef, useEffect } from 'react'
 import { useGLTF, Float, OrbitControls } from '@react-three/drei'
 import gsap from 'gsap'
-import { useEffect } from 'react'
 
 export default function LanyardScene() {
   // load your GLTF model
