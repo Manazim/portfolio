@@ -1,56 +1,47 @@
 // src/components/LanyardScene.tsx
-import { useRef, useEffect } from 'react'
-import { useFrame, useLoader } from '@react-three/fiber'
-import { TextureLoader } from 'three'
+import { Suspense, useRef } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { useGLTF, Float, OrbitControls } from '@react-three/drei'
 import gsap from 'gsap'
+import { useEffect } from 'react'
 
 export default function LanyardScene() {
-  const torusRef = useRef<any>()
-  const planeRef = useRef<any>()
-
-  // load your portrait; place your image at public/portrait.jpg
-  const portrait = useLoader(TextureLoader, '/portrait.jpg')
-
-  // floating animation
-  useFrame((_, dt) => {
-    torusRef.current.rotation.y += dt * 0.2
-    torusRef.current.rotation.x += Math.sin(Date.now() / 1000) * dt * 0.1
-  })
+  // load your GLTF model
+  const { scene } = useGLTF('/models/lanyard.glb') as any
+  const modelRef = useRef<THREE.Group>(null!)
 
   // entrance animation
   useEffect(() => {
-    gsap.from(torusRef.current.scale, {
+    gsap.from(modelRef.current.scale, {
       x: 0, y: 0, z: 0,
       duration: 1.5,
-      ease: 'back.out(1.5)'
-    })
-    gsap.from(planeRef.current.position, {
-      y: -5,
-      duration: 1.2,
-      delay: 0.2,
-      ease: 'bounce.out'
+      ease: 'back.out(1.7)'
     })
   }, [])
 
   return (
     <>
-      <ambientLight intensity={0.3} />
-      <pointLight position={[5, 5, 5]} intensity={1} />
+      <ambientLight intensity={0.4} />
+      <directionalLight position={[5, 5, 5]} intensity={1} />
 
-      {/* Lanyard ring */}
-      <mesh ref={torusRef} position={[0, 0, -4]}>
-        <torusGeometry args={[1.2, 0.1, 16, 100]} />
-        <meshStandardMaterial color="#0ff" emissive="#0ff" emissiveIntensity={0.6} metalness={0.5} roughness={0.2}/>
-      </mesh>
+      <Float
+        ref={modelRef}
+        speed={1}            /* how fast it floats */
+        rotationIntensity={0.4}
+        floatIntensity={0.6}
+      >
+        <primitive object={scene} />
+      </Float>
 
-      {/* Portrait plane */}
-      <mesh ref={planeRef} position={[0, -1, -4]}>
-        <planeGeometry args={[1, 1.3]} />
-        <meshBasicMaterial
-          map={portrait}
-          toneMapped={false}
-        />
-      </mesh>
+      <OrbitControls
+        enablePan={false}
+        enableZoom={true}
+        maxDistance={10}
+        minDistance={3}
+      />
     </>
   )
 }
+
+// preload for faster load
+useGLTF.preload('/models/lanyard.glb')
